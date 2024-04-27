@@ -1,11 +1,10 @@
 import './App.css';
+import Body from './Components/Body';
 
 function App() {
   return (
-    <div className='app text-3xl text-'>
-      <h1>Namaste everyone lets build netflix gpt</h1>
-    </div>
+    <Body/>
   );
-}
+} 
 
 export default App;
