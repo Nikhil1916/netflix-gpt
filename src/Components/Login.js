@@ -3,7 +3,6 @@ import Header from "./Header";
 import checkValidData from "./../Utils/validate";
 import {createUserWithEmailAndPassword  , signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { auth } from "../Utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
 const Login = () => {
@@ -12,7 +11,6 @@ const Login = () => {
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
-    const navigate  = useNavigate();
     const dispatch = useDispatch();
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
@@ -34,7 +32,6 @@ const Login = () => {
                   displayName: name?.current?.value,
                 }).then(() => {
                   // Profile updated!
-                  navigate("/browse");
                   //we will take the latest value from auth as user will not have display name and photourl  
                   const {uid, displayName, email} = auth.currentUser;
                   dispatch(addUser({uid,email,displayName}));
@@ -58,7 +55,6 @@ const Login = () => {
                 // Signed in
                 const user = userCredential.user;
                 console.log(user, 'login');
-                navigate("/browse")
                 // ...
               })
               .catch((error) => {
