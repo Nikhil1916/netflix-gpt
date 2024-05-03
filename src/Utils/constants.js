@@ -8,4 +8,6 @@ export const options = {
       accept: 'application/json',
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjNmMjc3MTQ3ZTg5MDM3MmNhODE1MmI3YjhiNjcxMSIsInN1YiI6IjYzMjlmNWZiMzliNmMzMDA5ZTlhMzEyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0m8W3JnHaznkUyb8QjYMpqKb05hibdpe4ijR0WC9PXA'
     }
-  };
+};
+
+export const youtubeVideoUrl="https://www.youtube.com/embed/"
