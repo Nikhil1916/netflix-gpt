@@ -4,7 +4,7 @@ import Videotitle from './Videotitle';
 import VideoBackground from './VideoBackground';
 
 const MainContainer = (props) => {
-  console.log(1, props);
+  // console.log(1, props);
   const movies = useSelector((store)=>store.movies?.nowPlayingMovies);
   if(movies == null) return;
   const defaultMovie = movies[0];
@@ -12,7 +12,7 @@ const MainContainer = (props) => {
   if(movies == null) return;
   const {original_title , overview , id } = defaultMovie;
   return (
-    <div className='relative'>
+    <div>
       <Videotitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>
