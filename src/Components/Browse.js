@@ -10,7 +10,9 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-      <MainContainer/>
+      <MainContainer>
+        <p>Hello I am from parent</p>
+      </MainContainer>
       <SecondaryContainer/>
     </div>
   )

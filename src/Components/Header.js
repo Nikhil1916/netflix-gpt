@@ -49,7 +49,7 @@ const Header = () => {
       setIsDropDown(!isDropdownOpen);
     }
     return (
-      <div className="header absolute w-full h-24 px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center">
+      <div className="header absolute w-full h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center">
         <img
           src={netflixLogo}
           alt="logo"
