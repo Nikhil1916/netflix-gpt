@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { netflixLogo, userIcon } from "../Utils/constants";
-const Header = () => {
+const Header = ({isGptSearch , setGptSearch}) => {
     const navigate = useNavigate();
     const user = useSelector((store)=>store.user);
     const [isDropdownOpen, setIsDropDown] = useState(false);
@@ -41,8 +41,11 @@ const Header = () => {
           .catch((error) => {
             // An error happened.
             // navigate("/error");
-          });
-          
+          });     
+    }
+
+    const toggleGptSearch = () => {
+      setGptSearch(!isGptSearch);
     }
 
     const toggleDropdown = () => {
@@ -60,6 +63,7 @@ const Header = () => {
             className="flex items-center p-2 gap-2 justify-center cursor-pointer"
             onMouseLeave={toggleDropdown}
           >
+           <button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>GPT Search</button>
             <img
               src={userIcon}
               className="w-12 h-12"
@@ -76,10 +80,10 @@ const Header = () => {
             )}
 
             {isDropdownOpen && (
-              <div className="absolute top-20 mr-10 bg-black p-3 w-30">
+              <div className="absolute top-20 right-9 bg-black p-3 w-30">
               <div>
                 <button
-                  className="font-bold text-white"
+                  className="font-bold text-white "
                   onClick={handleSignOut}
                 >
                   Sign Out
