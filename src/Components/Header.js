@@ -9,12 +9,14 @@ import { addUser, removeUser } from "../Utils/userSlice";
 import { netflixLogo, userIcon, supportedLanguages } from "../Utils/constants";
 import { handleSignOut } from "../Utils/functions";
 import { updateLanguage, updateTheme } from "../Utils/configSlice";
+import lang from "../Utils/languageConstants";
 const Header = ({isGptSearch , setGptSearch}) => {
     const navigate = useNavigate();
     const user = useSelector((store)=>store.user);
     const config = useSelector((store)=>store.config);
     const [isDropdownOpen, setIsDropDown] = useState(false);
     const dispatch = useDispatch();
+    const languageType = useSelector((store)=>store.config.languageType) || 'en';
     useEffect(()=>{
      const unsubscribe =  onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -35,24 +37,12 @@ const Header = ({isGptSearch , setGptSearch}) => {
         unsubscribe();
       }
     },[]);
-    // const handleSignOut = () => {
-    //     signOut(auth)
-    //       .then(() => {
-    //         // Sign-out successful.
-    //         // navigate("/");
-    //       })
-    //       .catch((error) => {
-    //         // An error happened.
-    //         // navigate("/error");
-    //       });     
-    // }
-
     const toggleGptSearch = () => {
       setGptSearch(!isGptSearch);
     }
 
-    const toggleDropdown = () => {
-      setIsDropDown(!isDropdownOpen);
+    const toggleDropdown = (val) => {
+      setIsDropDown(val);
     }
     return (
       <div className="header absolute w-full h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center">
@@ -64,9 +54,9 @@ const Header = ({isGptSearch , setGptSearch}) => {
         {user && (
           <div
             className="flex items-center p-2 gap-2 justify-center cursor-pointer"
-            onMouseLeave={toggleDropdown}
+            onMouseLeave={()=>toggleDropdown(false)}
           >
-          {isGptSearch && <select className="p-2 rounded bg-gray-700 text-white" value={config.languageType} onChange={(e)=>{
+          {<select className="p-2 rounded bg-gray-700 text-white" value={config.languageType} onChange={(e)=>{
             // console.log(e?.target?.value);
             dispatch(updateLanguage(e?.target?.value));
           }}>
@@ -75,7 +65,7 @@ const Header = ({isGptSearch , setGptSearch}) => {
           })}
           </select>
           }
-           <button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>{!isGptSearch ? "GPT Search" : "Home Page"}</button>
+           <button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>{!isGptSearch ? lang[languageType].gpt_search : lang[languageType].home_page}</button>
             <img
               src={userIcon}
               className="w-12 h-12"
@@ -98,10 +88,10 @@ const Header = ({isGptSearch , setGptSearch}) => {
                   className="font-bold text-white p-1"
                   onClick={handleSignOut}
                 >
-                  Sign Out
+                  {lang[languageType].sign_out}
                 </button>
                 <button className="text-white font-bold border-t-[1px] border-white p-1" onClick={()=>dispatch(updateTheme("Light"))}>
-                  Account
+                {lang[languageType].account}
                 </button>
               </div>
               

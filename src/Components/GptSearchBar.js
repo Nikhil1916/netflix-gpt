@@ -3,7 +3,7 @@ import lang from '../Utils/languageConstants.js';
 import { useSelector } from 'react-redux';
 
 const GptSearchBar = () => {
-  const languageType = useSelector((app)=>app.config.languageType);
+  const languageType = useSelector((app)=>app.config.languageType) || 'en';
   console.log(languageType);
   return (
     <div className="pt-[10%] flex justify-center">
