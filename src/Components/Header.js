@@ -18,9 +18,9 @@ const Header = ({isGptSearch , setGptSearch}) => {
     const dispatch = useDispatch();
     const languageType = useSelector((store)=>store.config.languageType) || 'en';
     useEffect(()=>{
-     const unsubscribe =  onAuthStateChanged(auth, (user) => {
+     const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log(user);
+          // console.log(user);
           const {uid, displayName, email} = user;
           dispatch(addUser({uid,email,displayName}));
           navigate("/browse");

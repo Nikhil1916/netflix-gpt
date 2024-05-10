@@ -77,7 +77,7 @@ const Login = () => {
         <Header/>
         <div className="absolute">
         <img src={BG_URL}
-         alt="login-bg" className="login-bg w-[100%] h-[100%]" />
+         alt="login-bg" className="login-bg w-screen h-screen" />
         </div>
         <form className="absolute top-[20%] left-[38%] w-3/12 bg-black flex flex-col p-12 text-white bg-opacity-80 rounded-lg">
             <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
