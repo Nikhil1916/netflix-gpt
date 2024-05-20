@@ -1,7 +1,7 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../Utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -16,14 +16,18 @@ const Header = ({isGptSearch , setGptSearch}) => {
     const config = useSelector((store)=>store.config);
     const [isDropdownOpen, setIsDropDown] = useState(false);
     const dispatch = useDispatch();
+    const path = useLocation();
     const languageType = useSelector((store)=>store.config.languageType) || 'en';
     useEffect(()=>{
      const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          // console.log(user);
+          // console.log();
+          if(path?.pathname == "/") {
+            navigate("/browse");
+          }
           const {uid, displayName, email} = user;
           dispatch(addUser({uid,email,displayName}));
-          // navigate("/browse");
+
           // ...
         } else {
           // User is signed out
@@ -44,8 +48,9 @@ const Header = ({isGptSearch , setGptSearch}) => {
     const toggleDropdown = (val) => {
       setIsDropDown(val);
     }
+    console.log(process.env);
     return (
-      <div className="header fixed w-full h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center">
+      <div className="header fixed w-full md:h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center sm: flex-col   md:flex-row">
         <img
           src={netflixLogo}
           alt="logo"
@@ -53,7 +58,7 @@ const Header = ({isGptSearch , setGptSearch}) => {
         />
         {user && (
           <div
-            className="flex items-center p-2 gap-2 justify-center cursor-pointer"
+            className="flex items-center p-2 gap-2 justify-center cursor-pointer sm:flex sm:flex-col md:flex-row"
             onMouseLeave={()=>toggleDropdown(false)}
           >
           {<select className="p-2 rounded bg-gray-700 text-white" value={config.languageType} onChange={(e)=>{
@@ -74,11 +79,11 @@ const Header = ({isGptSearch , setGptSearch}) => {
             {!isDropdownOpen ? (
               <FontAwesomeIcon
                 icon={faAngleDown}
-                className="text-white"
+                className="text-white sm: hidden md:block"
                 onMouseEnter={()=>toggleDropdown(true)}
               />
             ) : (
-              <FontAwesomeIcon icon={faAngleUp} className="text-white" />
+              <FontAwesomeIcon icon={faAngleUp} className="text-white sm: hidden md:block" />
             )}
 
             {isDropdownOpen && (

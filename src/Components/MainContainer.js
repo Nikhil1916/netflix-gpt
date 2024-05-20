@@ -12,8 +12,8 @@ const MainContainer = (props) => {
   if(movies == null) return;
   const {original_title , overview , id } = defaultMovie;
   return (
-    <div>
-      <Videotitle title={original_title} overview={overview} />
+    <div className='sm: pt-[40%] bg-black md:pt-0'>
+      <Videotitle  title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>
   )

@@ -22,4 +22,4 @@ export const supportedLanguages = [
   { identifier: "sn", name: "español" },
 ];
 
-export const googleAPIKEY = process.env.REACT_APP_openAiGptKey;
+export const googleAPIKEY = process.env.REACT_APP_GEMINI_APP_KEY+""

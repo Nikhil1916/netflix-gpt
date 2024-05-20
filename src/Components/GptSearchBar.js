@@ -13,7 +13,7 @@ const GptSearchBar = () => {
   const languageType = useSelector((app)=>app.config.languageType) || 'en';
   const searchText = useRef(null);
   const handleGptSearch = async() => {
-    console.log(searchText.current.value);
+    console.log(googleAPIKEY, searchText.current.value);
     if(!searchText.current.value) return;
     try {
     // make an api call to get movie results
@@ -35,20 +35,26 @@ const GptSearchBar = () => {
       movieNames: movies? movies : ['andaz apna apna', 'hera pheri','chori chori chupke chupke', 'hungama']
     }));
     } catch(e) {
+      //adding if key expires so flow shouldnt break
+      const moviesResults = gptRsult;
+      dispatch(addGPTSuggestions({
+        movieResults:moviesResults?.map(m=>m.results),
+        movieNames: ['andaz apna apna', 'hera pheri','chori chori chupke chupke', 'hungama']
+      }));
       console.error(e);
     }
     
   }
   return (
-    <div className="pt-[10%] flex justify-center">
-      <form className="w-1/2 rounded flex bg-black" onSubmit={(e)=>e.preventDefault()}>
+    <div className="flex justify-center sm: pt-[15rem] md:pt-[10%]">
+      <form className=" sm: w-[80%] md:w-1/2 rounded flex bg-black sm: flex-col md:flex-row" onSubmit={(e)=>e.preventDefault()}>
           <input
             type="text"
             placeholder={lang?.[languageType]?.placeholder}
-            className="p-4 w-[65%] rounded m-4"
+            className="p-4 w-[65%] rounded m-4 sm: w-[90%]"
             ref={searchText}
           />
-          <button className="py-2 px-4 m-4 bg-red-500 text-white text-center w-[25%] rounded" onClick={handleGptSearch}>
+          <button className="py-2 px-4 m-4 bg-red-500 text-white text-center rounded  w-[50%] md:w-[25%] sm: ml-16 md:ml-0" onClick={handleGptSearch}>
             {lang?.[languageType]?.search}
           </button>
       </form>

@@ -25,23 +25,22 @@ const MovieDetail = () => {
     return <>
       <div className="fixed">
         <img src={BG_URL}
-         alt="login-bg" className="login-bg w-screen h-screen" />
+         alt="login-bg" className="login-bg w-screen h-screen object-cover" />
         </div>
-        <h1 className="text-3xl text-white absolute m-24 ml-12 font-bold">404, No Trailer Found!!</h1>
+        <h1 className="text-3xl text-white absolute m-24 ml-12 font-bold pt-[40%] md:pt-[0%]">404, No Trailer Found!!</h1>
     </>
   }
   return (
     <div className="relative">
      <div className="fixed">
         <img src={BG_URL}
-         alt="login-bg" className="login-bg w-screen h-screen" />
+         alt="login-bg" className="login-bg w-screen h-screen object-cover" />
         </div>
-      <div className="bg-black absolute mt-24 ml-20">
-            <div>
+        <div className="pt-[40%] md:pt-[0%]">
+      <div className="">
+            <div className="bg-black absolute mt-24 ml-8 md:ml-20">
               <iframe
-              className="aspect-video"
-                width="800"
-                height="400"
+                className="aspect-video w-[300px] h-[300px] md:w-[800px] md:h-[400px]"
                 src={
                   "https://www.youtube.com/embed/" +
                   movie?.key +
@@ -54,7 +53,8 @@ const MovieDetail = () => {
               ></iframe>
             </div>
       </div>
-      <h1 className="text-white absolute top-[32rem] left-[5rem] text-3xl font-bold">{searchParam.get("name")}</h1>
+      <h1 className="text-white absolute top-[28rem]  md:top-[32rem] left-[5rem] text-3xl font-bold">{searchParam.get("name")}</h1>
+        </div>
     </div>
   );
 };

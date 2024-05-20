@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import checkValidData from "./../Utils/validate";
 import {createUserWithEmailAndPassword  , signInWithEmailAndPassword, updateProfile} from "firebase/auth";
@@ -77,9 +77,9 @@ const Login = () => {
         <Header/>
         <div className="fixed">
         <img src={BG_URL}
-         alt="login-bg" className="login-bg w-screen h-screen" />
+         alt="login-bg" className="login-bg w-screen h-screen object-cover" />
         </div>
-        <form className="absolute top-[18%] left-[38%] w-3/12 bg-black flex flex-col p-10 text-white bg-opacity-80 rounded-lg">
+        <form className="sm: w-full absolute top-[18%] md:left-[38%] md:w-3/12 bg-black flex flex-col p-10 text-white bg-opacity-80 rounded-lg">
             <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
             {!isSignInForm && (<input type="text" placeholder="Full Name" className="p-4 my-4 w-full bg-gray-800 rounded-lg" ref={name} />)    }
             <input type="text" placeholder="Email Address" className="p-4 my-4 w-full bg-gray-800 rounded-lg" ref={email} />
