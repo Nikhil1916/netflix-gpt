@@ -1,8 +1,9 @@
 import React from 'react'
 import Login from './Login'
 import Browse from './Browse'
-import Loader from './Loader'
+import MovieDetail from './MovieDetail'
 import { createBrowserRouter, RouterProvider , Outlet } from 'react-router-dom';
+import Dashboard from './Dashboard'
 const Body = () => {
   const router = createBrowserRouter([
     {
@@ -11,8 +12,18 @@ const Body = () => {
     },
     {
       path:"/browse",
-      element:<Browse/>
-    }
+      element:<Browse/>,
+      children: [
+        {
+          path:"watch",
+          element:<MovieDetail/>
+        },
+        {
+          path:"",
+          element:<Dashboard/>,
+        }
+      ]
+    },
   ]);
   return (
     <div className='body'>
