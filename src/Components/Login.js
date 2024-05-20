@@ -7,12 +7,14 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
 import { BG_URL } from "../Utils/constants";
 import { handleSignOut } from "../Utils/functions";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMsg , setErrorMsg] = useState(null);
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
+    const navigate= useNavigate();
     const dispatch = useDispatch();
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
@@ -31,6 +33,7 @@ const Login = () => {
                 updateProfile(user, {
                   displayName: name?.current?.value,
                 }).then(() => {
+                  navigate("/browse");
                   // Profile updated!
                   //we will take the latest value from auth as user will not have display name and photourl  
                   const {uid, displayName, email} = auth.currentUser;
@@ -53,6 +56,7 @@ const Login = () => {
               .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                navigate("/browse");
                 const logOutTimer = setTimeout(()=>{
                   handleSignOut()
                   clearTimeout(logOutTimer);

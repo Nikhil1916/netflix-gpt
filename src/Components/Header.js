@@ -23,7 +23,7 @@ const Header = ({isGptSearch , setGptSearch}) => {
           // console.log(user);
           const {uid, displayName, email} = user;
           dispatch(addUser({uid,email,displayName}));
-          navigate("/browse");
+          // navigate("/browse");
           // ...
         } else {
           // User is signed out

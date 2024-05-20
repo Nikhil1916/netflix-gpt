@@ -6,7 +6,7 @@ export const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjNmMjc3MTQ3ZTg5MDM3MmNhODE1MmI3YjhiNjcxMSIsInN1YiI6IjYzMjlmNWZiMzliNmMzMDA5ZTlhMzEyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0m8W3JnHaznkUyb8QjYMpqKb05hibdpe4ijR0WC9PXA'
+      Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_KEY
     }
 };
 
@@ -22,4 +22,4 @@ export const supportedLanguages = [
   { identifier: "sn", name: "español" },
 ];
 
-export const googleAPIKEY = "AIzaSyCLPke2avuoz3I08RPV4Aig-gcIY4Lc5EM";
+export const googleAPIKEY = process.env.REACT_APP_openAiGptKey;
