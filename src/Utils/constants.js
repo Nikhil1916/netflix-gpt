@@ -21,3 +21,5 @@ export const supportedLanguages = [
   { identifier: "hn", name: "हिंदी" },
   { identifier: "sn", name: "español" },
 ];
+
+export const googleAPIKEY = "AIzaSyCLPke2avuoz3I08RPV4Aig-gcIY4Lc5EM";
