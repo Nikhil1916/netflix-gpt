@@ -10,7 +10,7 @@ const GptSearch = () => {
         <img
           src={BG_URL}
           alt="login-bg"
-          className="login-bg w-[100%] h-[100%]"
+          className="login-bg w-screen h-screen"
         />
       </div>
       <GptSearchBar />

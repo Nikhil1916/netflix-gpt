@@ -24,8 +24,6 @@ const Login = () => {
         setErrorMsg(message);
         if(message) return;
         if(!isSignInForm) {
-            console.log(message, isSignInForm);
-            
              createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
               .then((userCredential) => {
                 // Signed up 
@@ -42,7 +40,6 @@ const Login = () => {
                   // An error occurred
                   // ...
                 });
-                console.log(userCredential);
                 // ...
               })
               .catch((error) => {
@@ -60,7 +57,6 @@ const Login = () => {
                   handleSignOut()
                   clearTimeout(logOutTimer);
                 },60 * 60 * 1000);
-                console.log(user, 'login');
                 // ...
               })
               .catch((error) => {
@@ -79,7 +75,7 @@ const Login = () => {
         <img src={BG_URL}
          alt="login-bg" className="login-bg w-screen h-screen" />
         </div>
-        <form className="absolute top-[20%] left-[38%] w-3/12 bg-black flex flex-col p-12 text-white bg-opacity-80 rounded-lg">
+        <form className="absolute top-[18%] left-[38%] w-3/12 bg-black flex flex-col p-10 text-white bg-opacity-80 rounded-lg">
             <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
             {!isSignInForm && (<input type="text" placeholder="Full Name" className="p-4 my-4 w-full bg-gray-800 rounded-lg" ref={name} />)    }
             <input type="text" placeholder="Email Address" className="p-4 my-4 w-full bg-gray-800 rounded-lg" ref={email} />
