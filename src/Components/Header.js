@@ -73,7 +73,7 @@ const Header = ({isGptSearch , setGptSearch}) => {
            {setGptSearch && <button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>{!isGptSearch ? lang[languageType].gpt_search : lang[languageType].home_page}</button>}
             <img
               src={userIcon}
-              className="w-12 h-12"
+              className="w-12 h-12 sm: hidden md:block"
               alt="user-icon"
             />
             {!isDropdownOpen ? (
