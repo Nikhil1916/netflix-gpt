@@ -5,7 +5,6 @@ import lang from '../Utils/languageConstants';
 
 const SecondaryContainer = () => {
   const movies = useSelector(store=>store.movies);
-  // console.log(movies);/
   const languageType = useSelector(store=>store.config.languageType) || 'en';
   return (
     <div className="bg-black sm:pt-[80%] md:pt-0">

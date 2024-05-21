@@ -37,7 +37,6 @@ const MovieDetail = () => {
         <h1 className="text-3xl text-white absolute m-24 ml-12 font-bold pt-[40%] md:pt-[0%]">404, No Trailer Found!!</h1>
     </>
   }
-  console.log( movie?.key );
   return (
     <div className="relative">
      <div className="fixed">

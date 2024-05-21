@@ -9,7 +9,6 @@ const useFetchUpcomingMovies = () => {
     const getUpcomingMovies = async(page=1) => {
       const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?page=${page}`, options);
       const json = await data?.json();
-      // console.log(json);
       dispatch(addUpcomingMovies(json?.results));
     }
     useEffect(()=>{

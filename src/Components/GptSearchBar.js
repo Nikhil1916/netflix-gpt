@@ -29,7 +29,6 @@ const GptSearchBar = () => {
     const moviePromises = movies?.map((movie)=>fetchMovie(1,movie));
     const moviesRes = await Promise.all(moviePromises) ;
     const moviesResults = gptRsult;
-    console.log(moviesRes);
     dispatch(addGPTSuggestions({
       movieResults:moviesRes ? moviesRes?.map(m=>m.results) : moviesResults?.map(m=>m.results),
       movieNames: movies? movies : ['andaz apna apna', 'hera pheri','chori chori chupke chupke', 'hungama']

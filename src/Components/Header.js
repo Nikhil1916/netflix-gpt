@@ -22,7 +22,6 @@ const Header = () => {
     useEffect(()=>{
      const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          // console.log();
           if(path?.pathname == "/") {
             navigate("/browse");
           }
@@ -62,7 +61,6 @@ const Header = () => {
             onMouseLeave={()=>toggleDropdown(false)}
           >
           {<select className="p-2 rounded bg-gray-700 text-white" value={config.languageType} onChange={(e)=>{
-            // console.log(e?.target?.value);
             dispatch(updateLanguage(e?.target?.value));
           }}>
           {supportedLanguages?.map((language)=>{
