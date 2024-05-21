@@ -6,19 +6,20 @@ import useFetchUpcomingMovies from '../Utils/useFetchUpcomingMovies'
 import useFetchTopRatedMovies from '../Utils/useFetchTopRatedMovies'
 import GptSearch from './GptSearch'
 import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Browse = () => {
   useFetchNowPlayingMovies();
   usePopularMovies();
   useFetchUpcomingMovies();
   useFetchTopRatedMovies();
-  const [isGptSearch , setIsGptSearch] = useState(false);
+  const isGptPage = useSelector(store=>store.config.isGptPage);
   return (
     <div>
-    <h1 className='text-3xl'>{isGptSearch}</h1>
-      <Header setGptSearch={(val) => { setIsGptSearch(val) }} isGptSearch={isGptSearch} />
+    {/* <h1 className='text-3xl'>{isGptPage}</h1> */}
+      <Header />
       {
-        isGptSearch ? <GptSearch /> :
+        isGptPage ? <GptSearch /> :
          <>
           <Outlet/>
           </>

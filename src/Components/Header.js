@@ -8,9 +8,10 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { netflixLogo, userIcon, supportedLanguages } from "../Utils/constants";
 import { handleSignOut } from "../Utils/functions";
-import { updateLanguage, updateTheme } from "../Utils/configSlice";
+import { toggleGptPage, updateLanguage, updateTheme } from "../Utils/configSlice";
 import lang from "../Utils/languageConstants";
-const Header = ({isGptSearch , setGptSearch}) => {
+const Header = () => {
+    const isGptSearch = useSelector(store=>store.config.isGptPage);
     const navigate = useNavigate();
     const user = useSelector((store)=>store.user);
     const config = useSelector((store)=>store.config);
@@ -42,13 +43,12 @@ const Header = ({isGptSearch , setGptSearch}) => {
       }
     },[]);
     const toggleGptSearch = () => {
-      setGptSearch(!isGptSearch);
+      dispatch(toggleGptPage(!isGptSearch));
     }
 
     const toggleDropdown = (val) => {
       setIsDropDown(val);
     }
-    console.log(process.env);
     return (
       <div className="header fixed w-full md:h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center sm: flex-col   md:flex-row">
         <img
@@ -70,7 +70,7 @@ const Header = ({isGptSearch , setGptSearch}) => {
           })}
           </select>
           }
-           {setGptSearch && <button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>{!isGptSearch ? lang[languageType].gpt_search : lang[languageType].home_page}</button>}
+           {<button className="bg-purple-500 py-2 px-4 text-white rounded mr-2" onClick={toggleGptSearch}>{!isGptSearch ? lang[languageType].gpt_search : lang[languageType].home_page}</button>}
             <img
               src={userIcon}
               className="w-12 h-12 sm: hidden md:block"

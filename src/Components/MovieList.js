@@ -2,8 +2,10 @@ import React from "react";
 import MovieCard from "./MovieCard";
 import "./MovieList.css"
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleGptPage } from "../Utils/configSlice";
 const MovieList  = ({title, movies}) => {
-  // console.log(movies);
+    const dispatch = useDispatch();
     return (
     <div>
       <div className="w-screen py-6 px-6 text-white">
@@ -11,7 +13,9 @@ const MovieList  = ({title, movies}) => {
         <div className="flex overflow-x-scroll no-scrollbar">
           <div className="flex gap-10">
             {movies?.map((_) => {
-              return <Link key={_?.id} to={`watch?v=${_?.id}&name=${_?.original_title}`}> <MovieCard key={_?.id} movieInfo={_} /></Link>;
+              return <Link key={_?.id} to={`watch?v=${_?.id}&name=${_?.original_title}`} onClick={()=>{
+                  dispatch(toggleGptPage(false));
+              }}> <MovieCard key={_?.id} movieInfo={_} /></Link>;
             })}
           </div>
         </div>
