@@ -6,7 +6,6 @@ const GptMovieSuggestions = () => {
   //would have been better to create gpt slice
   const gptMovies = useSelector(store=>store.movies);
   const {gptSearchMovieSuggestions,gptMovieName} = gptMovies;
-  // if(!gptMovieName || gptSearchMovieSuggestions?.length ==0 || !gptSearchMovieSuggestions) return;
   return (
     // <div className='flex justify-center mt-2'>
     <div className='p-4 bg-opacity-70 text-white mt-2'>

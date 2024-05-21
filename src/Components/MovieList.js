@@ -7,7 +7,6 @@ import { toggleGptPage } from "../Utils/configSlice";
 import SchimmerCard from "./SchimmerCard";
 const MovieList  = ({title, movies}) => {
     const dispatch = useDispatch();
-    console.log(movies);
     return (
     <div>
       <div className="w-screen py-6 px-6 text-white">

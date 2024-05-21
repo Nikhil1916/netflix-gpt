@@ -16,7 +16,6 @@ const Browse = () => {
   const isGptPage = useSelector(store=>store.config.isGptPage);
   return (
     <div>
-    {/* <h1 className='text-3xl'>{isGptPage}</h1> */}
       <Header />
       {
         isGptPage ? <GptSearch /> :
