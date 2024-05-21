@@ -14,6 +14,10 @@ const GptSearchBar = () => {
   const searchText = useRef(null);
   const handleGptSearch = async() => {
     if(!searchText.current.value) return;
+    dispatch(addGPTSuggestions({
+      movieResults: [],
+      movieNames: []
+    }));
     try {
     // make an api call to get movie results
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
