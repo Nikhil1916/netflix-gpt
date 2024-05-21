@@ -43,7 +43,7 @@ const GptSearchBar = () => {
         movieResults:moviesResults?.map(m=>m.results),
         movieNames: ['andaz apna apna', 'hera pheri','chori chori chupke chupke', 'hungama']
       }));
-      console.error(e);
+      console.warn(e);
     }
     
   }
