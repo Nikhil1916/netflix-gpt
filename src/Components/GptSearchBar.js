@@ -13,7 +13,6 @@ const GptSearchBar = () => {
   const languageType = useSelector((app)=>app.config.languageType) || 'en';
   const searchText = useRef(null);
   const handleGptSearch = async() => {
-    console.log(googleAPIKEY, searchText.current.value);
     if(!searchText.current.value) return;
     try {
     // make an api call to get movie results
