@@ -1,7 +1,7 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../Utils/firebase";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -22,7 +22,7 @@ const Header = () => {
     useEffect(()=>{
      const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          if(path?.pathname == "/") {
+          if(path?.pathname === "/") {
             navigate("/browse");
           }
           const {uid, displayName, email} = user;

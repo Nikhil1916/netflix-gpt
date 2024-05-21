@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
 import checkValidData from "./../Utils/validate";
 import {createUserWithEmailAndPassword  , signInWithEmailAndPassword, updateProfile} from "firebase/auth";
@@ -55,7 +55,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
               .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
+                // const user = userCredential.user;
                 navigate("/browse");
                 const logOutTimer = setTimeout(()=>{
                   handleSignOut()

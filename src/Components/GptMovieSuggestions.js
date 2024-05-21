@@ -10,7 +10,7 @@ const GptMovieSuggestions = () => {
     // <div className='flex justify-center mt-2'>
     <div className='p-4 bg-opacity-70 text-white mt-2'>
         {
-          gptMovieName?.length > 0 ? gptMovieName?.map((movie,i)=> gptSearchMovieSuggestions?.[i]?.length ? <MovieList key={movie} title={movie} movies={gptSearchMovieSuggestions?.[i]} /> : null) : gptMovieName?.length==0 && [1,2,3,4]?.map(()=><MovieList movies={[]} title={"Loading...."} />)
+          gptMovieName?.length > 0 ? gptMovieName?.map((movie,i)=> gptSearchMovieSuggestions?.[i]?.length ? <MovieList key={movie} title={movie} movies={gptSearchMovieSuggestions?.[i]} /> : null) : gptMovieName?.length===0 && [1,2,3,4]?.map(()=><MovieList movies={[]} title={"Loading...."} />)
         }
     </div>
 

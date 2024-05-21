@@ -9,8 +9,8 @@ const MovieDetail = () => {
   const fetchMovieDetail = async()=>{
     const data = await fetch(`https://api.themoviedb.org/3/movie/${searchParam.get("v")}/videos`, options);
     const json = await data?.json();
-    if(json?.results?.find((movie)=>movie?.type?.toLowerCase() == "trailer")) {
-      setMovie(json?.results?.find((movie)=>movie?.type?.toLowerCase() == "trailer"));
+    if(json?.results?.find((movie)=>movie?.type?.toLowerCase() === "trailer")) {
+      setMovie(json?.results?.find((movie)=>movie?.type?.toLowerCase() === "trailer"));
     } else {
       setMovie({
         noMovieFound:true
