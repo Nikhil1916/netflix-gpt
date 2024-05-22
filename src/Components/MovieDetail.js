@@ -59,7 +59,7 @@ const MovieDetail = () => {
               ></iframe>
             </div>
       </div>
-      <h1 className="text-white absolute top-[28rem]  md:top-[32rem] left-[5rem] text-3xl font-bold">{searchParam.get("name")}</h1>
+      <h1 className="text-white absolute md:top-[32rem]  sm: top-[34rem] left-[5rem] text-3xl font-bold">{searchParam.get("name")}</h1>
         </div>
     </div>
   );

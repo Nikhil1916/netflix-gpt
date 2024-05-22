@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
   const languageType = useSelector(store=>store.config.languageType) || 'en';
   console.log(movies);
   return (
-    <div className="bg-black sm:pt-[80%] md:pt-0">
+    <div className="bg-black sm: pt-[30%] md:pt-0">
       <div className="-mt-24 z-20 relative">
         <MovieList title={lang?.[languageType]?.now_playing} movies={movies?.nowPlayingMovies} />
         <MovieList title={lang?.[languageType]?.popular} movies={movies?.popularMovies} />
