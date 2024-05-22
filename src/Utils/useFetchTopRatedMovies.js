@@ -12,8 +12,8 @@ const useFetchTopRatedMovies = () => {
         dispatch(addTopRatedMovies(json?.results));
       }
       useEffect(()=>{
-        !topRatedMovies && getTopRatedMovies();
-      },[])
+        topRatedMovies?.length == 0 && getTopRatedMovies();
+      },[])//eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default useFetchTopRatedMovies;

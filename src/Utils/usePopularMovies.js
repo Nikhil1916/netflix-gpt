@@ -12,8 +12,8 @@ const usePopularMovies = () => {
         dispatch(addPopularMovies(json?.results));
       }
       useEffect(()=>{
-        !popularMovies && getPopularMovies();
-      },[])
+        popularMovies?.length==0 && getPopularMovies();
+      },[]);//eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default usePopularMovies;

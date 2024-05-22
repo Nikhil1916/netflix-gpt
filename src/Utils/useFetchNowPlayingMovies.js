@@ -12,8 +12,8 @@ const useFetchNowPlayingMovies = () => {
       dispatch(addNowPlayingMovies(json?.results));
     }
     useEffect(()=>{
-      !nowPlayingMovies && getNowPlayingMovies();
-    },[])
+      nowPlayingMovies?.length == 0 && getNowPlayingMovies();
+    },[])//eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default useFetchNowPlayingMovies;

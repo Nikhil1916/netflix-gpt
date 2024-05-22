@@ -5,7 +5,7 @@ import { BG_URL, options } from "../Utils/constants";
 const MovieDetail = () => {
   useEffect(()=>{
     fetchMovieDetail();
-  },[]);
+  },[]);//eslint-disable-line react-hooks/exhaustive-deps
   const fetchMovieDetail = async()=>{
     const data = await fetch(`https://api.themoviedb.org/3/movie/${searchParam.get("v")}/videos`, options);
     const json = await data?.json();
@@ -16,7 +16,6 @@ const MovieDetail = () => {
         noMovieFound:true
       })
     }
-
   }
   const [movie, setMovie] = useState(null);
   const [searchParam] = useSearchParams();

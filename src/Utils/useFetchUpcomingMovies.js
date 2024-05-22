@@ -12,8 +12,8 @@ const useFetchUpcomingMovies = () => {
       dispatch(addUpcomingMovies(json?.results));
     }
     useEffect(()=>{
-        !upcomingMovies && getUpcomingMovies();
-    },[])
+        upcomingMovies?.length == 0 && getUpcomingMovies();
+    },[])//eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default useFetchUpcomingMovies;

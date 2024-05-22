@@ -8,7 +8,7 @@ const useMovieTrailer = (movieId) => {
     const getMovieVideos = async() => {
       const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options);
       const json = await data?.json();
-      const trailer = json?.results?.find(video=>video?.type?.toLowerCase()=='trailer');
+      let trailer = json?.results?.find(video=>video?.type?.toLowerCase()==='trailer');
       if(!trailer) {
         trailer = json?.results?.[0];
       }
@@ -16,7 +16,7 @@ const useMovieTrailer = (movieId) => {
     }
     useEffect(()=>{
       getMovieVideos();
-    },[]);
+    },[]);//eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default useMovieTrailer

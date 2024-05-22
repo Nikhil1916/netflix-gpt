@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../Utils/firebase";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,28 @@ import { handleSignOut } from "../Utils/functions";
 import { toggleGptPage, updateLanguage, updateTheme } from "../Utils/configSlice";
 import lang from "../Utils/languageConstants";
 const Header = () => {
+  useEffect(()=>{
+   const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if(path?.pathname === "/") {
+          navigate("/browse");
+        }
+        const {uid, displayName, email} = user;
+        dispatch(addUser({uid,email,displayName}));
+
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => {
+      //unsubscribe when component unmount
+      unsubscribe();
+    }
+  },[]); //eslint-disable-line react-hooks/exhaustive-deps
     const isGptSearch = useSelector(store=>store.config.isGptPage);
     const navigate = useNavigate();
     const user = useSelector((store)=>store.user);
@@ -19,28 +41,6 @@ const Header = () => {
     const dispatch = useDispatch();
     const path = useLocation();
     const languageType = useSelector((store)=>store.config.languageType) || 'en';
-    useEffect(()=>{
-     const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if (user) {
-          if(path?.pathname === "/") {
-            navigate("/browse");
-          }
-          const {uid, displayName, email} = user;
-          dispatch(addUser({uid,email,displayName}));
-
-          // ...
-        } else {
-          // User is signed out
-          // ...
-          dispatch(removeUser());
-          navigate("/");
-        }
-      });
-      return () => {
-        //unsubscribe when component unmount
-        unsubscribe();
-      }
-    },[]);
     const toggleGptSearch = () => {
       dispatch(toggleGptPage(!isGptSearch));
     }
@@ -50,11 +50,13 @@ const Header = () => {
     }
     return (
       <div className="header fixed w-full md:h-24 px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between items-center sm: flex-col   md:flex-row">
+      <Link to={"/browse"} onClick={()=>dispatch(toggleGptPage(false))}>
         <img
           src={netflixLogo}
           alt="logo"
           className="h-24"
         />
+      </Link>
         {user && (
           <div
             className="flex items-center p-2 gap-2 justify-center cursor-pointer sm:flex sm:flex-col md:flex-row"
