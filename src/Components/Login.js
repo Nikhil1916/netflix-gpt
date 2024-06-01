@@ -6,7 +6,7 @@ import { auth } from "../Utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
 import { BG_URL } from "../Utils/constants";
-import { handleSignOut } from "../Utils/functions";
+import { googleLogin, handleSignOut } from "../Utils/functions";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
@@ -71,7 +71,6 @@ const Login = () => {
         }
     }
 
-
     return(
         <div>
         <Header/>
@@ -86,8 +85,12 @@ const Login = () => {
             <input type="password" placeholder="Password" className="p-4 my-4 w-full bg-gray-800 rounded-lg" ref={password} />
             <p className="text-red-600 font-bold">{errorMsg}</p>
             <button onClick={(e)=>submitForm(e)} className="py-4 my-4 bg-red-700 w-full rounded-lg" type="button" >{isSignInForm ? "Sign In" : "Sign Up"}</button>
-            <p onClick={toggleSignInForm} className="cursor-pointer">
-            {isSignInForm ? "New to Netflix? Sign up now." : "Already a User. Sign In Now?"}</p>
+            <div className="flex justify-center">
+            <p onClick={toggleSignInForm} className="cursor-pointer">{isSignInForm ? "New to Netflix? Sign up now." : "Already a User. Sign In Now?"}</p>
+            </div>
+            <div className="flex justify-center pt-4">
+              <img src="/images/googleLogin.png" onClick={googleLogin} alt="Google sign-in" className="h-10 w-40 cursor-pointer" />
+            </div>
         </form>
         </div>
     )
