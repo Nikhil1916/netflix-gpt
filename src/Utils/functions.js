@@ -1,7 +1,6 @@
 import { auth, provider } from "./firebase";
 import { options } from "./constants";
-import { signOut, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import { signOut, signInWithPopup } from "firebase/auth";
 export const handleSignOut = () => {
     signOut(auth)
       .then(() => {

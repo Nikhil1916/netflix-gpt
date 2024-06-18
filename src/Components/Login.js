@@ -8,6 +8,7 @@ import { addUser } from "../Utils/userSlice";
 import { BG_URL } from "../Utils/constants";
 import { googleLogin, handleSignOut } from "../Utils/functions";
 import { useNavigate } from "react-router-dom";
+import { sendNotification , resetState } from "../Utils/configSlice";
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMsg , setErrorMsg] = useState(null);
@@ -34,10 +35,16 @@ const Login = () => {
                   displayName: name?.current?.value,
                 }).then(() => {
                   navigate("/browse");
+                  const logOutTimer = setTimeout(()=>{
+                    handleSignOut()
+                    dispatch(resetState());
+                    clearTimeout(logOutTimer);
+                  },60 * 60 * 1000);
                   // Profile updated!
                   //we will take the latest value from auth as user will not have display name and photourl  
                   const {uid, displayName, email} = auth.currentUser;
                   dispatch(addUser({uid,email,displayName}));
+                  dispatch(sendNotification(`${displayName} logged In.`));
                   // ...
                 }).catch((error) => {
                   // An error occurred
@@ -57,8 +64,10 @@ const Login = () => {
                 // Signed in
                 // const user = userCredential.user;
                 navigate("/browse");
+                dispatch(sendNotification(`${auth?.currentUser?.displayName} logged In.`));
                 const logOutTimer = setTimeout(()=>{
-                  handleSignOut()
+                  handleSignOut();
+                  dispatch(resetState());
                   clearTimeout(logOutTimer);
                 },60 * 60 * 1000);
                 // ...

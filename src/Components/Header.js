@@ -8,7 +8,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { addUser, removeUser } from "../Utils/userSlice";
 import { netflixLogo, userIcon, supportedLanguages } from "../Utils/constants";
 import { handleSignOut } from "../Utils/functions";
-import { toggleGptPage, updateLanguage, updateTheme } from "../Utils/configSlice";
+import { toggleGptPage, updateLanguage,resetState } from "../Utils/configSlice";
 import lang from "../Utils/languageConstants";
 const Header = () => {
   useEffect(()=>{
@@ -105,7 +105,10 @@ const Header = () => {
             )}
             <button
               className="font-bold text-white p-1 sm:block md:hidden"
-              onClick={handleSignOut}
+              onClick={()=>{
+                handleSignOut();
+                dispatch(resetState());
+              }}
             >
               {lang[languageType].sign_out}
             </button>
@@ -115,13 +118,16 @@ const Header = () => {
                 <div className="flex flex-col">
                   <button
                     className="font-bold text-white p-1"
-                    onClick={handleSignOut}
+                    onClick={()=>{
+                      handleSignOut();
+                      dispatch(resetState());
+                    }}
                   >
                     {lang[languageType].sign_out}
                   </button>
                   <button
                     className="text-white font-bold border-t-[1px] border-white p-1"
-                    onClick={() => dispatch(updateTheme("Light"))}
+                    // onClick={() => dispatch(sendNotification(Math.random()))}
                   >
                     {lang[languageType].account}
                   </button>

@@ -5,7 +5,8 @@ const configSlice  = createSlice({
     initialState: {
         languageType: 'en',
         theme: 'dark',
-        isGptPage: false
+        isGptPage: false,
+        notify: ''
     },
     reducers: {
         updateLanguage:(state, action) => {
@@ -16,10 +17,16 @@ const configSlice  = createSlice({
         },
         toggleGptPage:(state, action)=>{
             state.isGptPage = action.payload;
-        }
+        },
+        sendNotification:(state,action)=>{
+            state.notify = action.payload;
+        },
+        resetState: () => {
+            return undefined; // This will reset the state slice to its initial state
+        },
     }
 })
 
 export default configSlice.reducer;
-export const {updateLanguage, updateTheme, toggleGptPage } = configSlice.actions;
+export const {updateLanguage, updateTheme, toggleGptPage , sendNotification, resetState } = configSlice.actions;
 
